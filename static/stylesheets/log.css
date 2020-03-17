@@ -185,15 +185,15 @@ button:hover {
 @media only screen and (max-width: 860px) {
     #form_box {
         margin: 0 calc(50vw - 185px);
-        margin-top: 17vh;
-        margin-bottom: 5vh;
+        margin-top: 11vh;
         position: absolute;
     }
 
     #type_cont {
         position: absolute;
-        height: 17vh;
-        line-height: 17vh;
-        margin-left: 28vw;
+        height: 9vh;
+        line-height: 9vh;
+        margin-left: 22.5vw;
+        font-size: 3.2vw;
     }
 }
