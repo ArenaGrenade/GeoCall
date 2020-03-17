@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+body {
+    background: white;
+    font-family: 'Raleway', sans-serif;
+}
+
+#form_div {
+    width: 92%;
+    height: 100%;
+}
+
+#form_box {
+    position: relative;
+    background-color: white;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 370px;
+    height: 78vh;
+    float: right;
+    margin: 11vh 0;
+}
+
+#form_box:before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background: linear-gradient(45deg, #f8bb00, #00acc3, #65bb48, #ed4a00, #00d1c6);
+    /*#ea4335, #fbbc03, #33a853, #4285f4, #5f6368*/
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    background-size: 300%;
+    z-index: -1;
+    animation: animate 20s linear infinite;
+    filter: blur(20px);
+}
+
+@keyframes animate {
+    0% {background-position: 0 0;}
+    50% {background-position: 300% 0;}
+    100% {background-position: 0 0;}
+}
+
+#text{
+    position: relative;
+	width: 100%;
+	box-sizing: border-box;
+	box-shadow: none;
+	outline: none;
+	border: none;
+    color: black;
+	background: transparent;
+	border-bottom: 1px solid darkgrey;
+	font-size: 2.2vh;
+}
+
+label {
+    position: relative;
+	font-size: 2.2vh;
+	pointer-events: none;
+	transition: .3s;
+    color: grey;
+    top: -4vh;
+}
+
+input:focus ~ label,
+input:valid ~ label{
+    top: -6.5vh;
+    font-size: 1.8vh;
+    color: black;
+}
+
+#text:focus,
+#text:valid {
+    border-bottom: 1px solid lightseagreen;
+}
+
+button {
+	position: relative;
+	box-sizing: border-box;
+	outline: none;
+	color: white;
+	height: 6vh;
+	width: 100%;
+	text-align: center;
+	text-decoration: none;
+	transition-duration: .5s;
+    background: gray;
+	border-radius: 100px;
+    font-size: 18px;
+    border: 3px solid gray;
+}
+
+button:hover {
+    color: lightseagreen;
+    background: transparent;
+    border: 1.5px solid lightseagreen;
+}
+
+#uname{
+    position: absolute;
+    margin-top: 26vh;
+    width: 100%;
+    margin-left: -40px;
+    padding: 0 40px;
+}
+
+#psswrd{
+    position: absolute;
+    margin-top: 34vh;
+    width: 100%;
+    margin-left: -40px;
+    padding: 0 40px;
+}
+
+#sub_but {
+    position: absolute;
+    margin-top: 41vh;
+    width: 100%;
+    margin-left: -40px;
+    padding: 0 40px;
+}
+
+#forgot {
+    position: absolute;
+    margin-top: 47.5vh;
+    margin-left: 170px;
+    text-decoration: none;
+    color: lightseagreen;
+}
+
+#heading {
+    position: absolute;
+    margin-top: 10vh;
+    margin-left: -10px;
+}
+
+#new_acc {
+    margin-top: 63vh;
+    position: absolute;
+    box-sizing: border-box;
+    background: transparent;
+    width: 290px;
+    height: 6vh;
+    font-size: 18px;
+    line-height: 5.1vh;
+    border-radius: 90px;
+    border: 2px solid gray;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    color: gray;
+    transition-duration: .5s;
+}
+
+#new_acc:hover {
+    color: white;
+    background: lightseagreen;
+    border: 2px solid lightseagreen;
+}
+
+#type_cont {
+    position: absolute;
+    font-size: 2.5vw;
+    font-family: 'Raleway', sans-serif;
+    height: 95vh;
+    line-height: 163vh;
+    margin-left: 2.5vw;
+}
+
+#cursor_el {
+	display: inline-block;
+	width: 5px;
+	height: calc(5px + 2vw);
+	animation: blink 0.8s step-end infinite;
+}
+
+@keyframes blink {
+	from, to { background-color: darkslategrey; }
+	50% { background-color: #fff; }
+}
+
+@media only screen and (max-width: 860px) {
+    #form_box {
+        margin: 0 calc(50vw - 185px);
+        margin-top: 17vh;
+        margin-bottom: 5vh;
+        position: absolute;
+    }
+
+    #type_cont {
+        position: absolute;
+        height: 17vh;
+        line-height: 17vh;
+        margin-left: 28vw;
+    }
+}
