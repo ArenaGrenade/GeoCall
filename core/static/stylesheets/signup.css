@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+Tamma+2&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+body {
+    background-image: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: animate 30s ease infinite;
+    filter: motionBlur(50px);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+@keyframes animate {
+    0% {background-position: 0 0;}
+    20% {background-position: 40% 0;}
+    30% {background-position: 80% 0;}
+    50% {background-position: 35% 10%;}
+    70% {background-position: 100% 0;}
+    90% {background-position: 0 100%;}
+    100% {background-position: 0 0;}
+}
+
+#form_box {
+    margin: 8vh auto;
+    width: 450px;
+    height: 80vh;
+    background: white;
+    text-align: center;
+    padding: 2vh 40px;
+}
+h3 {
+    font-family: 'Baloo Tamma 2', cursive;
+    font-size: 5.5vh;
+    background: -webkit-linear-gradient(black 100%, lightseagreen 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#entry{
+    position: relative;
+	width: 100%;
+	box-sizing: border-box;
+	box-shadow: none;
+	outline: none;
+	border: none;
+    color: black;
+	background: transparent;
+	border-bottom: 1px solid darkgrey;
+	font-size: 2.8vh;
+    top: 4vh;
+    text-align: center;
+}
+
+label {
+    text-transform: uppercase;
+    position: relative;
+	font-size: 4vh;
+	pointer-events: none;
+	transition: .3s;
+    color: grey;
+    top: -1vh;
+}
+
+input:focus ~ label,
+input:valid ~ label{
+    top: -2.6vh;
+    font-size: 1.8vh;
+    color: black;
+}
+
+#entry:focus,
+#entry:valid {
+    border-bottom: 1px solid lightseagreen;
+}
+
+.form_div {
+    position: absolute;
+    width: 450px;
+    height: 7vh;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+}
+
+#el1 { top: 28vh; }
+#el2 { top: 36vh; }
+#el3 { top: 44vh; }
+#el4 { top: 52vh; }
+#el5 { top: 60vh; }
+#el6 { top: 68vh; }

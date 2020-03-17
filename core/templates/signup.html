@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/signup.css') }}" />
+</head>
+<body>
+<form action="" method="POST" id="form_box">
+    <h3>SIGN UP</h3>
+    <div class="form_div" id="el1">
+        <input type="text" class="fname" required="" id="entry"/>
+        <label>First Name</label>
+    </div>
+    <div class="form_div" id="el2">
+        <input type="text" class="lname" required="" id="entry"/>
+        <label>Last Name</label>
+    </div>
+    <div class="form_div" id="el3">
+        <input type="text" class="email" required="" id="entry"/>
+        <label>Email Address</label>
+    </div>
+    <div class="form_div" id="el4">
+        <input type="text" class="uname" required="" id="entry"/>
+        <label>User Name</label>
+    </div>
+    <div class="form_div" id="el5">
+        <input type="password" class="psswrd" required="" id="entry"/>
+        <label>Create Password</label>
+    </div>
+    <div class="form_div" id="el6">
+        <input type="password" class="conf" required="" id="entry"/>
+        <label>Re-enter Password</label>
+    </div>
+</form>
+</body>
+</html>
