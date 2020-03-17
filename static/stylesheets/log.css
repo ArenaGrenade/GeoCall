@@ -163,11 +163,11 @@ button:hover {
 
 #type_cont {
     position: absolute;
-    font-size: 3vw;
+    font-size: 2.5vw;
     font-family: 'Raleway', sans-serif;
     height: 95vh;
     line-height: 163vh;
-    margin-left: 4vw;
+    margin-left: 2.5vw;
 }
 
 #cursor_el {
@@ -180,4 +180,20 @@ button:hover {
 @keyframes blink {
 	from, to { background-color: darkslategrey; }
 	50% { background-color: #fff; }
+}
+
+@media only screen and (max-width: 860px) {
+    #form_box {
+        margin: 0 calc(50vw - 185px);
+        margin-top: 17vh;
+        margin-bottom: 5vh;
+        position: absolute;
+    }
+
+    #type_cont {
+        position: absolute;
+        height: 17vh;
+        line-height: 17vh;
+        margin-left: 28vw;
+    }
 }
