@@ -6,3 +6,4 @@ Jinja2==2.10.1
 Werkzeug>=0.15.3
 gunicorn>=19.5.0
 requests>=2.20.0
+Flask-SQLAlchemy>=2.4.1
