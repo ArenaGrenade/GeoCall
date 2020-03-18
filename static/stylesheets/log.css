@@ -43,7 +43,8 @@ body {
     100% {background-position: 0 0;}
 }
 
-#text{
+#iuname,
+#ipsswrd {
     position: relative;
 	width: 100%;
 	box-sizing: border-box;
@@ -72,8 +73,10 @@ input:valid ~ label{
     color: black;
 }
 
-#text:focus,
-#text:valid {
+#iuname:focus,
+#ipsswrd:focus,
+#iuname:valid,
+#ipsswrd:valid {
     border-bottom: 1px solid lightseagreen;
 }
 
@@ -196,4 +199,11 @@ button:hover {
         margin-left: 22.5vw;
         font-size: 3.2vw;
     }
+}
+
+.alert {
+    position: absolute;
+    margin-right: 40px;
+    text-align: center;
+    width: 290px;
 }

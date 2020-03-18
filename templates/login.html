@@ -16,22 +16,45 @@
     <span id="cursor_el"></span>
 </p>
 <div id="form_div">
-    <form action="" method="POST" id="form_box">
+    <form action="" method="POST" id="form_box" role="form">
+        {{ block }}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category,message in messages %}
+                        {% if "error" != category %}
+                            <div class="alert alert-info">
+                                <strong>Success!</strong>
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                        {% if "error" == category %}
+                            <div class="alert alert-warning">
+                                <strong>Error: </strong>
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        {{ endblock }}
         <div class="tab">
+
+            {{ form.csrf_token }}
+
             <div id="heading">
                 <h3>Sign in to start chatting away</h3>
                 <h4>use your chat account</h4>
             </div>
             <div id="uname">
-                <input type="text" class="username" id="text" required="" />
-                <label>Username</label>
+                <input type="text" class="username form-control" required="" id="iuname" name="iuname"/>
+                <label for="iuname">Username</label>
             </div>
             <div id="psswrd">
-                <input type="password" class="password" id="text" required=""/>
-                <label>Password</label>
+                <input type="password" class="password form-control" required="" id="ipsswrd" name="ipsswrd"/>
+                <label for="ipsswrd">Password</label>
             </div>
             <div id="sub_but">
-                <button id="submit" type="submit" form="form_box">Submit</button>
+                <button id="submit" type="submit" form="form_box" value="Submit">Submit</button>
             </div>
             <span><a href="{{ url_for("reset_password") }}" id="forgot">Forgot Password?</a></span>
             <a href="{{ url_for("new_account") }}" id="new_acc">Create New Account</a>
