@@ -10,7 +10,7 @@ app.config['SECRET_KEY'] = 'SjdnUends821Jsdlkvxh391ksdODnejdDw'
 socketio = SocketIO(app)
 
 app_dir = os.path.dirname(os.path.abspath(__file__))
-db_file = "sqlite:///{}".format(os.path.join(app_dir, "User.db"))
+db_file = "sqlite:///{}".format(os.path.join(app_dir, "Users.db"))
 app.config['SQLALCHEMY_DATABASE_URI'] = db_file
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -37,8 +37,8 @@ def is_part(form, field):
 
 
 class LoginForm(Form):
-    username = StringField('Username', validators=[validators.required(), validators.length(min=6, max=24), is_part])
-    password = StringField('Password', validators=[validators.required(), validators.length(min=8, max=16)])
+    username = StringField('Username', validators=[validators.DataRequired(), validators.length(min=6, max=24), is_part])
+    password = StringField('Password', validators=[validators.DataRequired(), validators.length(min=8, max=16)])
 
 
 @app.route('/reset_password')
@@ -83,4 +83,4 @@ def welcome():
 
 if __name__ == '__main__':
     db.create_all()
-    socketio.run(app, debug=True)
+    app.run(debug=True)
