@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/welcome.css') }}" />
+</head>
+<body>
+    {{ block }}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for m in messages %}
+                    <span>{{ m }}</span>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    {{ endblock }}
+    <div id="chat_app_name">CHAT_APP_NAME_GOES_HERE</div>
+    <div id="phone"></div>
+</body>
+</html>

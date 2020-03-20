@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, flash, url_for, redirect
+from flask import Flask, render_template, request, flash, url_for, redirect, jsonify
 from wtforms import Form, TextField, TextAreaField, StringField, SubmitField, ValidationError, validators
 from flask_wtf import FlaskForm
+from flask_simple_geoip import SimpleGeoIP
 from models import *
 
 app = Flask(__name__)
@@ -8,10 +9,10 @@ app.config['SECRET_KEY'] = 'SjdnUends821Jsdlkvxh391ksdODnejdDw'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://okxcozfadnqnzf:' \
                                         '1424b0ac3b7135753b6ece87fd62beeac2bd18ebacd45c80816428980ea36e78@' \
                                         'ec2-18-235-97-230.compute-1.amazonaws.com:5432/d7o7kisoh901m8'
+app.config['GEOIPIFY_API_KEY'] = 'at_0sULU6rAzLuuAqFgCBpoWE758vcoR'
 
 db = SQLAlchemy(app)
-
-
+simple_geoip = SimpleGeoIP(app)
 
 
 class Account(FlaskForm):
@@ -71,7 +72,8 @@ def login():
 
 @app.route('/')
 def welcome():
-    return redirect(url_for("new_account"))
+    geoip_data = simple_geoip.get_geoip_data()
+    return jsonify(data=geoip_data)
 
 
 if __name__ == '__main__':
