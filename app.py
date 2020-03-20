@@ -73,7 +73,7 @@ def login():
 @app.route('/')
 def welcome():
     geoip_data = simple_geoip.get_geoip_data()
-    return jsonify(data=geoip_data)
+    return jsonify({'ip': request.remote_addr}), 200
 
 
 if __name__ == '__main__':
