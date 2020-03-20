@@ -1,44 +1,24 @@
 from flask import Flask, render_template, request, flash, url_for, redirect
-from flask_socketio import SocketIO
 from wtforms import Form, TextField, TextAreaField, StringField, SubmitField, ValidationError, validators
-from flask_sqlalchemy import SQLAlchemy
-import os
-import hashlib
+from flask_wtf import FlaskForm
+from models import *
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SjdnUends821Jsdlkvxh391ksdODnejdDw'
-socketio = SocketIO(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://okxcozfadnqnzf:' \
+                                        '1424b0ac3b7135753b6ece87fd62beeac2bd18ebacd45c80816428980ea36e78@' \
+                                        'ec2-18-235-97-230.compute-1.amazonaws.com:5432/d7o7kisoh901m8'
 
-app_dir = os.path.dirname(os.path.abspath(__file__))
-db_file = "sqlite:///{}".format(os.path.join(app_dir, "Users.db"))
-app.config['SQLALCHEMY_DATABASE_URI'] = db_file
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
-class User(db.Model):
-    __tablename__ = "user"
-    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
-    u_name = db.Column(db.String(24), nullable = False)
-    passwrd = db.Column(db.String(64), nullable = False)
-
-    def __init__(self, username, password):
-        self.u_name = username
-        self.passwrd = password
-
-
-def is_part(form, field):
-    user_with_uname = User.query.filter_by(u_name=field.data).first()
-    if not user_with_uname:
-        raise ValidationError('You are not authorized')
-    else:
-        if user_with_uname.passwrd != form.password.data:
-            raise ValidationError('You are not authorized')
-
-
-class LoginForm(Form):
-    username = StringField('Username', validators=[validators.DataRequired(), validators.length(min=6, max=24), is_part])
-    password = StringField('Password', validators=[validators.DataRequired(), validators.length(min=8, max=16)])
+class Account(FlaskForm):
+    firstname = StringField(u'First Name', validators=[])
+    lastname = StringField(u'Last Name', validators=[])
+    username = StringField(u'Email Address', validators=[])
+    email = StringField(u'User Name', validators=[validators.Email()])
+    password = StringField(u'Password', validators=[])
+    re_pass = StringField(u'Re-enter Password', validators=[validators.EqualTo('password')])
 
 
 @app.route('/reset_password')
@@ -48,37 +28,48 @@ def reset_password():
 
 @app.route('/new_account', methods=["POST", "GET"])
 def new_account():
-    return render_template('signup.html')
+    form = Account(request.form)
+    print(request.form)
+    if form.validate_on_submit():
+        dup_user_obj_1 = User.query.filter_by(u_name=request.form['u_name']).first()
+        dup_user_obj_2 = User.query.filter_by(email=request.form['email']).first()
+        if dup_user_obj_1 or dup_user_obj_2:
+            return "Nope don't try"
+        else:
+            new_user = User(
+                f_name = request.form['f_name'],
+                l_name = request.form['l_name'],
+                u_name = request.form['u_name'],
+                email = request.form['email'],
+            )
+            new_user.set_password(request.form['password'])
+            db.session.add(new_user)
+            db.session.commit()
+            return redirect(url_for('login'))
+    else:
+        return render_template('signup.html', form=form)
 
 
 @app.route('/login', methods=["POST", "GET"])
 def login():
-    form = LoginForm(request.form)
+    print(request.form)
     if request.method == "POST":
-        form.username.data = request.form['iuname']
-        form.password.data = request.form['ipsswrd']
-        print(form.username.data + " " + form.password.data)
-
-        if form.validate():
-            flash(u"You have logged in successfully as " + form.username.data, 'success')
-            print("Validation Success")
-        else:
-            if form.errors["username"][0] == 'You are not authorized':
-                flash(u"You do not have an account", 'error')
+        print(request.form['iuname'])
+        user = User.query.filter_by(u_name=request.form['iuname']).first()
+        if user:
+            if user.check_password(request.form['ipsswrd']):
+                flash(u'You have successfully logged in', 'success')
+                return "You have entered your chat page"
             else:
-                flash(u"Please use valid credentials", 'error')
-            print("Validate Failed")
-            print(form.errors)
-    return render_template('login.html', form=form)
+                flash(u'You have entered the wrong password', 'error')
+        else:
+            flash(u'This user name doesn\'t exist please create a new account', 'error')
+    return render_template('login.html', form=request.form)
 
 
 @app.route('/')
 def welcome():
-    db.session.add(User("admin101", "Hacker101"))
-    db.session.add(User("admin102", "Hacker102"))
-    db.session.add(User("admin103", "Hacker103"))
-    db.session.commit()
-    return redirect(url_for("login"))
+    return redirect(url_for("new_account"))
 
 
 if __name__ == '__main__':
