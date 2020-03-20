@@ -12,6 +12,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://okxcozfadnqnzf:' \
 db = SQLAlchemy(app)
 
 
+
+
 class Account(FlaskForm):
     firstname = StringField(u'First Name', validators=[])
     lastname = StringField(u'Last Name', validators=[])
