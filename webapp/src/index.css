@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=B612&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background:black !important;
+  color: white !important;
+  font-family: 'Exo 2', sans-serif !important;
+}
+
+/* Generic styles {{{ */
+.glow::before, .glow::after {
+  --border-size: -2px;
+  content: '';
+  position: absolute;
+  top: var(--border-size);
+  left: var(--border-size);
+  right: var(--border-size);
+  bottom: var(--border-size);
+  z-index: -100;
+  background: linear-gradient(
+    45deg, 
+    #e6fb04,
+    #ff6600,
+    #00ff66,
+    #00ffff,
+    #ff00ff,
+    #ff0099,
+    #6e0dd0,
+    #ff3300,
+    #099fff
+  );
+  background-size: 400%;
+  animation: glowAnimate 20s linear infinite;
+}
+.glow::after {
+  filter: blur(30px);
+}
+@keyframes glowAnimate {
+  0% {background-position: 0 0;}
+  50% {background-position: 400% 0;}
+  100% {background-position: 0 0;}
+}
+
+input[type=text] {
+  background: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid white;
+  border-radius: 0;
+  padding: .375rem .2rem;
+  color: white;
+}
+input[type=text]:focus {
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  border-bottom: 1px solid white;
+  border-radius: 0;
+  color: white;
+}
+
+button:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+/* }}} Generic Styles */
+
+/* Landing Page {{{ */
+.landing-row {
+  height: 100vh;
+}
+/* }}} Landing Page */
+
+/* Landing Form {{{ */
+.form-box {
+  position: relative;
+  width: 80%;
+  background: linear-gradient(180deg, black, rgb(15, 15, 15));
+}
+
+.form-padding { padding: 0.65rem !important; }
+/* }}} Landing Form */
+
+/* Landing page text {{{ */
+.text-center {
+  text-align: center;
+}
+
+.title-banner {
+  font-size: calc(52px + 2vw);
+}
+.desc-banner {
+  max-width: 80%;
+  font-size: calc(22px + 0.7vw);
+  line-height: 1.6em;
+}
+/* }}} Landing Page text */
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+  .form-padding { padding: 2rem !important; }
+}
+ 
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {  
+  .form-padding { padding: 1.2rem !important; }
+}
+ 
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+}
+ 
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  
+  .form-padding { padding: 3rem !important; }
+}
