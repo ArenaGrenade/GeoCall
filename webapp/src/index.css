@@ -15,7 +15,14 @@ body {
   background:black !important;
   color: white !important;
   font-family: 'Exo 2', sans-serif !important;
+  letter-spacing: 0.1em !important;
 }
+
+/*
+* {
+  overflow: hidden;
+}
+*/
 
 /* Generic styles {{{ */
 .glow::before, .glow::after {
@@ -69,19 +76,30 @@ input[type=text]:focus {
   border-radius: 0;
   color: white;
 }
+input[type=text]:disabled {
+  background: transparent;
+  color: rgb(100, 100, 100);
+  border-bottom: 1px solid rgb(100, 100, 100);
+}
 
 button:focus {
   border: none;
   outline: none;
   box-shadow: none;
 }
-/* }}} Generic Styles */
 
-/* Landing Page {{{ */
-.landing-row {
+.scroll {
+  overflow-y: scroll !important;
+  overflow-x: hidden !important;
+}
+.no-hor-scroll {
+  overflow-x: hidden;
+}
+
+.full-height {
   height: 100vh;
 }
-/* }}} Landing Page */
+/* }}} Generic Styles */
 
 /* Landing Form {{{ */
 .form-box {
@@ -109,9 +127,32 @@ button:focus {
 /* }}} Landing Page text */
 
 
+/* Chat Room {{{ */
+#code-copied {
+  cursor: pointer;
+}
+
+.room-row-height { height: calc(100vh - 56px); }
+.room-row-max-height { max-height: calc(100vh - 56px); }
+
+.message-card {
+  background-color: white;
+}
+
+.message-card-text {
+  width: 65%;
+}
+/* }}} Chat Room */
+
+/* Mobile Devices (576px and less) */
+@media (max-width: 567px) {
+  .btn-grp { margin: 0.5rem; padding: 0.5rem; }
+}
+
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
   .form-padding { padding: 2rem !important; }
+  .btn-grp { margin: 0 3rem 0 3rem; padding: 0 3rem 0 3rem; }
 }
  
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
